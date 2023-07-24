@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- sample2.CalcBeanImpl cbean = new sample2.CalcBeanImpl() -->
+
+<!-- 
+	<bean id="cbean" class="sample2.CalcBeanImpl">
+		setter로 값 주입: cbean.setSu1()
+		<property name="su1">
+			<value type="int">13</value>
+		</property>
+		생성자로 값 주입: CalcBeanImpl cbean = new CalcBeanImpl(4)
+		<constructor-arg>
+			<value type="int">4</value>
+		</constructor-arg>
+	</bean> 
+-->
+
+	<!-- 네임스페이스로 주입 -->
+	<bean id="cbean" class="sample2.CalcBeanImpl" p:su1="13" c:su2="4"/>
+	
+</beans>
