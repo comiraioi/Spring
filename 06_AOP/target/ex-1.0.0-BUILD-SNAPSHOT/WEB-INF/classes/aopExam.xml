@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+
+	<!-- 핵심 기능 클래스 -->
+	<bean id="myboard" class="example3.BoardImpl"/>
+	<bean id="myorder" class="example3.OrderImpl"/>
+	
+	<!-- 공통 사항 클래스 -->
+	<!-- 핵심 기능 전에 수행 -->
+	<bean id="mylogin" class="example3.Login"/>
+	<bean id="myhello" class="example3.Hello"/>
+	<!-- 핵심 기능 이후에 수행 -->
+	<bean id="mylogout" class="example3.Logout"/>
+	<bean id="mydao" class="example3.Dao"/>
+	
+	<!-- board -->
+	<aop:config> <!-- before order: 0~10사이의 수, 숫자가 작을 수록 먼저 실행됨 -->
+		<aop:aspect ref="mylogin" order="1"> <!-- <aop:before>: 핵심 기능 호출 전에 -->
+			<aop:before method="login" pointcut="execution(* example3.BoardImpl.*())"/>
+		</aop:aspect>	<!-- pointcut: 리턴 타입 무관, example3 패키지 BoardImpl 클래스의 매개변수가 없는 메서드 호출 -->
+	</aop:config>
+	<aop:config>
+		<aop:aspect ref="myhello" order="2">
+			<aop:before method="hello" pointcut="execution(* example3.BoardImpl.*())"/>
+		</aop:aspect>
+	</aop:config>
+	<aop:config>
+		<aop:aspect ref="mydao" order="4">
+			<aop:after method="dao" pointcut="execution(* example3.BoardImpl.*())"/>
+		</aop:aspect>
+	</aop:config>
+	<aop:config>
+		<aop:aspect ref="mylogout" order="3">
+			<aop:after method="logout" pointcut="execution(* example3.BoardImpl.*())"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<!-- order -->
+	<aop:config>
+		<aop:aspect ref="mylogin" order="1">
+			<aop:before method="login" pointcut="execution(* example3.OrderImpl.*())"/>
+		</aop:aspect>
+	</aop:config>
+	<aop:config>
+		<aop:aspect ref="myhello" order="2">
+			<aop:before method="hello" pointcut="execution(* example3.OrderImpl.*())"/>
+		</aop:aspect>
+	</aop:config>
+	<aop:config>
+		<aop:aspect ref="mydao" order="4">
+			<aop:after method="dao" pointcut="execution(* example3.OrderImpl.*())"/>
+		</aop:aspect>
+	</aop:config>
+	<aop:config>
+		<aop:aspect ref="mylogout" order="3">
+			<aop:after method="logout" pointcut="execution(* example3.OrderImpl.*())"/>
+		</aop:aspect>
+	</aop:config>
+	
+</beans>
