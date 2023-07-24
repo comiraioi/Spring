@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+  	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  	"https://mybatis.org/dtd/mybatis-3-config.dtd">
+  	
+<configuration>
+	<!-- mapper 파일의 resultType 별칭 설정 -->
+	<typeAliases>
+			<typeAlias type="product.model.ProductBean" alias="MyProduct"/>
+	</typeAliases> 
+	
+	<!-- mapper 파일 여러개일때는 root-context.xml이 아닌 SqlMapConfig.xml에서 지정 -->
+	<mappers>
+		<mapper resource="mybatis/member.xml"/>
+		<mapper resource="mybatis/product.xml"/>
+		<mapper resource="mybatis/order.xml"/>
+		<mapper resource="mybatis/orderdetail.xml"/>
+		<mapper resource="mybatis/composite.xml"/>
+	</mappers>
+	
+</configuration>

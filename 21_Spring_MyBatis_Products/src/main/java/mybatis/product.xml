@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- product.xml -->
+<!DOCTYPE mapper
+  	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="product.model.Product">
+	<!-- select -->
+	<select id="ProductList" resultType="MyProduct" parameterType="hashmap">
+		select * from products
+		<if test="whatColumn == 'name'">
+			where name like #{keyword}
+		</if>
+		<if test="whatColumn == 'contents'">
+			where contents like #{keyword}
+		</if>
+		order by num desc
+	</select>
+	
+	<!-- count -->
+	<select id="ProductCount" resultType="int" parameterType="hashmap">
+		select count(*) from products
+		<if test="whatColumn == 'name'">
+			where name like #{keyword}
+		</if>
+		<if test="whatColumn == 'contents'">
+			where contents like #{keyword}
+		</if>
+	</select>
+	
+	<!-- insert -->
+	<insert id="InsertProduct">
+		insert into products(num, name, company, image, stock, price, contents, point, inputdate)
+		values(seqprod.nextval,#{name},#{company},#{image},#{stock},#{price},#{contents},#{point},#{inputdate})   
+	</insert>
+	
+	<!-- detail -->
+	<select id="ProductDetail" resultType="MyProduct">
+		select * from products
+		where num = #{num}
+	</select>
+	
+	<!-- update -->
+	<update id="UpdateProduct">
+		update products set
+		name=#{name}, company=#{company}, image=#{image}, stock=#{stock}, price=#{price}, contents=#{contents}, point=#{point}
+		where num = #{num}
+	</update>
+	
+	<!-- update stock -->
+	<update id="UpdateStock">
+		update products set
+		stock=#{stock} where num = #{num}
+	</update>
+	
+	<!-- delete -->
+	<delete id="DeleteProduct">
+		delete products
+		where num = #{num}
+	</delete>
+	
+</mapper>

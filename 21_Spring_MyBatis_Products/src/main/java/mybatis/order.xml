@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- order.xml -->
+<!DOCTYPE mapper
+  	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="order.model.Order">
+	
+	<!-- insert -->
+	<insert id="InsertOrder">
+		insert into orders(oid, mid, orderdate)
+		values(seqoid.nextval, #{mid}, sysdate)
+	</insert>
+	
+	<!-- get max -->
+	<select id="GetMaxOid" resultType="int">
+		select max(oid) from orders
+	</select>
+	
+	<!-- select by mid -->
+	<select id="OrderList" resultType="order.model.OrderBean">
+		select * from orders
+		where mid like #{mid}
+		order by oid desc
+	</select>
+	
+</mapper>

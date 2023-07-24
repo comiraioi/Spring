@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- composite.xml -->
+<!DOCTYPE mapper
+  	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="product.model.Composite">
+	<!-- join -->
+	<select id="GetOrderDetail" resultType="product.model.JoinBean">	<!-- 쇼핑리스트에 담아도 됨 -->
+		select row_number() over(order by oid) as no, od.pnum, p.name, od.qty, p.price
+		from orderdetails od inner join products p
+		on od.pnum = p.num
+		where od.oid = #{oid}
+	</select>
+	
+</mapper>
