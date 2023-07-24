@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+  	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  	"https://mybatis.org/dtd/mybatis-3-config.dtd">
+  		
+<configuration>
+	<!-- mapper 파일 resultType 별칭 설정 
+	<typeAliases>
+		<typeAlias type="테이블명.model.Bean" alias="MyBean"/>
+	</typeAliases> -->
+	
+	<!-- 컬럼명에 언더바가 있으면 오류 발생 => 언더바 빼고 bean 작성 -->
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+</configuration>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  	
+<mapper namespace="board.model.Board">	
+
+	<!-- count -->
+	<select id="BoardCount" resultType="int">
+		select count(*) from board
+		<if test="whatColumn == 'subject'">
+			where subject like #{keyword}
+		</if>
+		<if test="whatColumn == 'writer'">
+			where writer like #{keyword}
+		</if>
+	</select>
+
+	<!-- select -->
+	<select id="BoardList" resultType="board.model.BoardBean" parameterType="hashmap">
+		select num, writer, email, subject, passwd, reg_date, readcount, ref, re_step, re_level, content, ip from board 
+        <if test="whatColumn =='writer'">
+        where writer like #{keyword}
+        </if>
+        <if test="whatColumn=='subject'">
+        where subject like #{keyword}
+        </if>
+        order by ref desc, re_step asc
+	</select>
+	
+	<!-- insert -->
+	<insert id="WriteArticle">
+		insert into board(num,writer,email,subject,passwd,reg_date,ref,re_step,re_level,content,ip)
+		values(board_seq.nextval,#{writer},#{email},#{subject},#{passwd},sysdate,board_seq.currval,0,0,#{content},#{ip})
+	</insert>
+	  
+	<!-- select by num -->
+	<select id="GetArticle" resultType="board.model.BoardBean">
+		select * from board
+		where num = #{num}
+	</select>
+	
+	<!-- search passwd -->
+	<select id="SearchPasswd" resultType="int" parameterType="hashmap">
+		select count(*) from board
+		where num=#{num} and passwd=#{passwd}
+	</select>
+	
+	<!-- update -->
+	<update id="UpdateArticle">
+		update board set writer=#{writer}, email=#{email}, subject=#{subject}, content=#{content}
+		where num=#{num} 
+	</update>
+	
+	<!-- delete -->
+	<delete id="DeleteArticle">
+		delete from board
+		where num=#{num}
+	</delete>
+	
+	<!-- update restep -->
+	<update id="UpdateRestep">
+		update board set re_step = #{restep}+1
+		where ref=#{ref} and re_step=#{restep}
+	</update>
+	
+	<!-- insert reply -->
+	<insert id="ReplyArticle">
+		insert into board(num,writer,subject,email,content,passwd,reg_date,ref,re_step,re_level,ip)
+		values(board_seq.nextval,#{writer},#{subject},#{email},#{content},#{passwd},sysdate,#{ref},#{restep},#{relevel},#{ip})
+	</insert>
+	  
+</mapper>
+
