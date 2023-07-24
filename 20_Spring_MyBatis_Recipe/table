@@ -1,0 +1,43 @@
+drop table recipe;
+create table recipe(
+	num number not null  primary key,
+	dish varchar2(20) not null,
+	continent varchar2(20) not null,
+	nation varchar2(25) not null,
+	ingredient varchar2(50) not null,
+	seasoning varchar2(30) not null,
+	calorie varchar2(20) not null
+);
+
+drop sequence rc_seq;
+
+create sequence rc_seq
+	increment by 1
+	start with 1 
+	minvalue 1
+	maxvalue 10000
+	nocache;
+
+insert into recipe(num,dish,continent,nation,ingredient,seasoning,calorie)
+values(rc_seq.nextval,'햄버거','아메리카','미국','빵,고기,양파,토마토','케찹','350');
+
+insert into recipe(num,dish,continent,nation,ingredient,seasoning,calorie)
+values(rc_seq.nextval,'파스타','유럽','이탈리아','면,양파,토마토','케찹','400');
+
+insert into recipe(num,dish,continent,nation,ingredient,seasoning,calorie)
+values(rc_seq.nextval,'쌀국수','아시아','베트남식','면,고기,양파','간장','300');
+
+insert into recipe(num,dish,continent,nation,ingredient,seasoning,calorie)
+values(rc_seq.nextval,'초밥','아시아','일식','밥,해산물','소금','200');
+
+
+commit;
+col num for 9
+col dish for a10
+col continent for a10
+col nation for a8
+col ingredient for a20
+col seasoning for a10
+col calorie for a10
+
+select * from recipe;

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  	
+<mapper namespace="recipe.RecipeBean">
+	<!-- select -->
+	<select id="RecipeList" resultType="recipe.model.RecipeBean" parameterType="hashmap">
+		select * from recipe
+		<if test="col == 'dish'">
+			where dish like #{keyword}
+		</if>
+		<if test="col == 'nation'">
+			where nation like #{keyword}
+		</if>
+		<if test="col == 'ingredient'">
+			where ingredient like #{keyword}
+		</if>
+		order by num
+	</select>
+	
+	<!-- count -->
+	<select id="RecipeCount" resultType="int" parameterType="hashmap">
+		select count(*) from recipe
+		<if test="col == 'dish'">
+			where dish like #{keyword}
+		</if>
+		<if test="col == 'nation'">
+			where nation like #{keyword}
+		</if>
+		<if test="col == 'ingredient'">
+			where ingredient like #{keyword}
+		</if>
+	</select>
+	
+	<!-- duplication -->
+	<select id="SearchDish">
+		select * from recipe
+		where dish = #{inputDish}
+	</select>
+	
+	<!-- insert -->
+	<insert id="InsertRecipe">
+		insert into recipe
+		values(rc_seq.nextval,#{dish},#{continent},#{nation},#{ingredient},#{seasoning},#{calorie})
+	</insert>
+	
+	<!-- select by num -->
+	<select id="RecipeDetail" resultType="recipe.model.RecipeBean">
+		select * from recipe
+		where num = #{num}
+	</select>
+	
+	<!-- update -->
+	<update id="UpdateRecipe">
+		update recipe set
+		dish=#{dish},continent=#{continent},nation=#{nation},ingredient=#{ingredient},seasoning=#{seasoning},calorie=#{calorie}
+		where num = #{num}
+	</update>
+	
+	<!-- delete -->
+	<delete id="DeleteRecipe">
+		delete from recipe
+		where num = #{num}
+	</delete>
+	
+</mapper>
