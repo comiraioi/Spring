@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- movie.xml -->
+<!DOCTYPE mapper
+  	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  	"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  		
+<mapper namespace="movie.MovieBean">
+	<!-- select -->
+	<select id="MovieList" resultType="movie.model.MovieBean" parameterType="hashmap">
+		select * from movie
+		<if test="col == 'genre'">
+			where genre like #{keyword}
+		</if>
+		<if test="col == 'grade'">
+			where grade like #{keyword}
+		</if>
+		<if test="col == 'actor'">
+			where actor like #{keyword}
+		</if>
+		order by num
+	</select>
+	
+	<!-- count -->
+	<select id="TotalCount" resultType="int" parameterType="hashmap">
+		select count(*) from movie
+		<if test="col == 'genre'">
+			where genre like #{keyword}
+		</if>
+		<if test="col == 'grade'">
+			where grade like #{keyword}
+		</if>
+		<if test="col == 'actor'">
+			where actor like #{keyword}
+		</if>
+	</select>
+	
+	<!-- duplication -->
+	<select id="SearchTitle">
+		select * from movie
+		where title = #{inputTitle}
+	</select>
+	
+	<!-- insert -->
+	<insert id="InsertMovie">
+		insert into movie(num,title,continent,nation,genre,grade,actor)
+		values(mv_seq.nextval,#{title},#{continent},#{nation},#{genre},#{grade},#{actor})
+	</insert>
+	
+	<!-- select by num -->
+	<select id="MovieDetail" resultType="movie.model.MovieBean">
+		select * from movie
+		where num = #{num}
+	</select>
+	
+	<!-- update -->
+	<update id="UpdateMovie">
+		update movie set
+		title=#{title}, continent=#{continent}, nation=#{nation}, genre=#{genre}, grade=#{grade}, actor=#{actor}
+		where num = #{num}
+	</update>
+	
+	<!-- delete -->
+	<delete id="DeleteMovie">
+		delete from movie
+		where num = #{num}
+	</delete>
+	
+</mapper>
