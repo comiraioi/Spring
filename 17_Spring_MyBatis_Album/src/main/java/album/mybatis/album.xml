@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- album.xml: mapper 파일 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="album.AlbumBean">	<!-- bean과 무관함 (namespace명 자유) -->
+	<!-- select, search: 동적 쿼리 -->
+	<select id="GetAlbumList" resultType="MyAlbum" parameterType="hashmap">
+		select * from albums
+		<if test="whatColumn =='title'">
+			where title like #{keyword}
+		</if>
+		<if test="whatColumn == 'singer'">
+			where singer like #{keyword} 
+		</if>
+		order by num desc
+	</select>
+	
+	<select id="GetTotalCount" resultType="int">
+		select count(*) from albums
+		<if test="whatColumn =='title'">
+			where title like #{keyword}
+		</if>
+		<if test="whatColumn == 'singer'">
+			where singer like #{keyword} 
+		</if>
+	</select>
+	
+	<!-- insert: form에서 입력한 AlbumBean 객체 넘어옴, 성공적으로 insert한 갯수 자동으로 리턴됨 -->
+	<insert id="InsertAlbum"> 
+		insert into albums(num,title,singer,price,day)
+		values(albums_seq.nextval,#{title},#{singer},#{price},#{day}) 
+	</insert>
+	
+	<!--  select by num -->
+	<select id="GetAlbum" resultType="album.model.AlbumBean">
+		select * from albums
+		where num = #{num}
+	</select>
+	
+	<!-- update -->
+	<update id="UpdateAlbum">
+		update albums set title=#{title},singer=#{singer},price=#{price},day=#{day}
+		where num = #{num}
+	</update>
+	
+	<!-- delete -->
+	<delete id="DeleteAlbum">
+		delete from albums
+		where num = #{num}
+	</delete>
+</mapper>

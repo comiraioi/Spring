@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- SqlMapConfig.xml -->
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+<configuration>
+	<!-- mapper 파일(album.xml)의 resultType 별칭 설정 -->
+	<typeAliases>
+		<typeAlias type="album.model.AlbumBean" alias="MyAlbum"/>
+	</typeAliases>
+</configuration>
