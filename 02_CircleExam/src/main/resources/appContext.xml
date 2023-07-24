@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 
+	sample3.PointImple point = new sample3.PointImpl();
+	point.setXpos(3.0);
+	point.setYpos(4.0);
+	<bean id="point" class="sample3.PointImpl">
+		<property name="xpos">
+			<value type="double">3.0</value>
+		</property>
+		<property name="ypos">
+			<value type="double">4.0</value>
+		</property>
+	</bean>
+	
+	sample3.CircleImpl circle = new sample3.CircleImpl(point,10.0);
+	<bean id="circle" class="sample3.CircleImpl">
+		<constructor-arg>
+			<ref bean="point"/>
+		</constructor-arg>
+		<constructor-arg>
+			<value type="double">10.0</value>
+		</constructor-arg>
+	</bean> 
+-->
+
+	<bean id="point" class="sample3.PointImpl" p:xpos="3.0" p:ypos="4.0"/>
+	<bean id="circle" class="sample3.CircleImpl" c:point-ref="point" c:radius="10.0"/>
+
+</beans>
+
+<!-- 
+appContext.xml
+
+* 객체 생성하기
+sample3.PointImpl point = new sample3.PointImpl();
+point.setXpos(3.0);	=> setter로 값 주입
+point.setYpos(4.0);
+
+sample3.CircleImpl circle = new sample3.CircleImpl(point,radius);	=> 생성자로 값 주입
+  
+ -->
