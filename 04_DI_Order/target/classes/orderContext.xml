@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- odao, ddao 객체 생성 -->
+	<bean id="odao" class="sample2.OrderImplDao"/>
+	<bean id="ddao" class="sample2.DeliveryImplDao"/>	
+	
+	<bean id="sdao" class="sample2.ServiceImplDao">
+		<!-- setter로 odao와 ddao에 값 주입 -->
+		<property name="odao">
+			<ref bean ="odao"/>
+		</property>
+		<property name="ddao">
+			<ref bean ="ddao"/>
+		</property>
+	</bean>
+
+</beans>
