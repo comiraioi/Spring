@@ -219,6 +219,30 @@
       </div>
 </details>
 
-
+<details>
+  <summary><h2> Redirect</h2></summary>
+  <div markdown="1">
+    <div>
+      <dt><h2>redirect</h2></dt>
+      <dd>뷰에서 "redirect:/" 접두어에 뷰 이름 붙이면 컨트롤러의 요청이 실행됨 </dd>
+    </div>
+    <div>
+      <dt><h2>데이터 전달</h2></dt>
+      <dd>jsp 파일이 아닌 redirect로 넘어가면 새로운 request 객체가 생성되어 form에서 입력한 값이 유지되지 않음(request.param, request.attr=null) <br>
+          &rArr; <b>map</b>으로 묶어서 넘겨야함
+      </dd>
+      <ul>
+        <li>form에서 action 요청 시 &rarr; 매개변수(HttpServletRequest request, RedirectAttributes redirectAttr)</li>
+        <ul>
+          <li>map 객체 생성: Map<String,Object> map = new HashMap<String, Object>();</li>
+          <li>map에 (키,값) 담기: map.put("mname", name);</li>
+          <li>map 객체 속성설정: redirectAttr.addFlashAttribute("redirectMap",map);</li>
+        </ul>
+        <li>redirect로 넘어간 요청: map 출력해도 null</li>
+        <li>jsp 파일: ${requestScope.redirectMap.키}으로 출력하면 결과값 나옴</li>
+      </ul>
+    </div>
+  </div>
+</details>
 
 
