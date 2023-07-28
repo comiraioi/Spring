@@ -313,7 +313,7 @@
 </details>
 
 <details>
-  <summary><h2>14~16) DB 작</h2></summary>
+  <summary><h2>14~16) DB 작업</h2></summary>
   <div markdown="1">
     <div>
       <dt>뷰 (Command) &rArr; Command 인터페이스 상속받음 </li>
@@ -325,8 +325,7 @@
             <ul>
               <li>방법1: HttpServletRequest request = (HttpServletRequest)map.get("req"); -> 컨트롤러에서 model 속성 설정한 request 객체 </li>
       		     => 배열이 있는 경우 쉼표 처리해 묶어서 String에 넣기
-<pre><code>
-String 배열변수 = "";
+<pre><code>String 배열변수 = "";
 String[] arr = request.getParameterValues("배열변수");
 if(arr.length == 0) {
   배열변수 += "선택 X";
