@@ -280,28 +280,28 @@
     <ul>
       <li>pom.xml에 유효성 검사에 필요한 dependecy 작성</li>
       <li>form 작성</li>
-      &rArr; form:form의 기본 method="POST" <-> form의 기본 method="GET"
+      &rArr; form:form의 기본 method=<b>"POST"</b> <-> form의 기본 method=<b>"GET"</b>
       <pre>&lt;form:form commandName="커맨드객체로 설정된 모델명(객체 앞글자만 소문자)"&gt;<br> &nbsp;&nbsp; &lt;form:errors cssClass="err(스타일 클래스명)" path="Bean의 변수명"/&gt;	&rArr; 에러메세지<br>&lt;/form:form&gt;</pre>
       <li>Bean: 변수 위에 유효성 검사 어노테이션 작성</li>
       <ul>
         <li>유효성 검사</li>
         <ul>
-          <li>text: <b>@NotBlank</b>(message="") &rarr; 공백처리 가능</li>
-          <li>select: <b>@NotBlank</b>(message=""), <b>@NotEmpty</b>(message="") &rarr; 선택 안했을때 value="" </li>
-          <li>checkbox, radio: <b>@NotBlank(message=""), <b>@NotEmpty</b>(message=""), <b>@NotNull</b>(message="")</li>
+          <li>text: @NotBlank(message="") &rarr; 공백처리 가능</li>
+          <li>select: @NotBlank(message=""), @NotEmpty(message="") &rarr; 선택 안했을때 value="" </li>
+          <li>checkbox, radio: @NotBlank(message=""), @NotEmpty(message=""), @NotNull(message="")</li>
         </ul>
         <li>글자 수 검사</li>
         <ul>
-          <li><b>@Size</b>(min = 3, max = 5, message = "")</li>
-          <li><b>@Length</b>(min = 3, max = 5, message = "")</li>
+          <li>@Size(min = 3, max = 5, message = "")</li>
+          <li>@Length(min = 3, max = 5, message = "")</li>
         </ul>
         <li>패턴(정규표현식) 검사</li>
         <ul>
-          <li><b>Pattern</b>(regexp = "^[0-9]+$", message = "숫자만 입력하세요")</li>
+          <li>Pattern(regexp = "^[0-9]+$", message = "숫자만 입력하세요")</li>
           <li>유효성 검사 -> 어노테이션 안에서는 /로 열고 닫지 않음 (*: 0번 이상, +: 1번 이상, ^: 시작, $: 끝)</li>
         </ul>
         <li>숫자 범위 검사</li>
-        : @<b>Range</b>(min=10, max=100, message="10살 이상, 100살 이하로 작성해야 합니다.")
+        : @Range(min=10, max=100, message="10살 이상, 100살 이하로 작성해야 합니다.")
       </ul>
       <li>뷰(form)</li>
       <li>컨트롤 &rArr; 커맨드 객체 유효성 검사 </li>
