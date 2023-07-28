@@ -279,9 +279,6 @@
     <dt><h2>유효성 검사</h2><dt>
     <ul>
       <li>pom.xml에 유효성 검사에 필요한 dependecy 작성</li>
-      <li>form 작성</li>
-      &rArr; form:form의 기본 method=<b>"POST"</b> <-> form의 기본 method=<b>"GET"</b>
-      <pre>&lt;form:form commandName="커맨드객체로 설정된 모델명(객체 앞글자만 소문자)"&gt;<br> &nbsp;&nbsp; &lt;form:errors cssClass="err(스타일 클래스명)" path="Bean의 변수명"/&gt;	&rArr; 에러메세지<br>&lt;/form:form&gt;</pre>
       <li>Bean: 변수 위에 유효성 검사 어노테이션 작성</li>
       <ul>
         <li>유효성 검사</li>
@@ -303,7 +300,9 @@
         <li>숫자 범위 검사</li>
         : @Range(min=10, max=100, message="10살 이상, 100살 이하로 작성해야 합니다.")
       </ul>
-      <li>뷰(form)</li>
+      <li>form 작성</li>
+      &rArr; form:form의 기본 method=<b>"POST"</b> <-> form의 기본 method=<b>"GET"</b>
+      <pre>&lt;form:form commandName="커맨드객체로 설정된 모델명(객체 앞글자만 소문자)"&gt;<br> &nbsp;&nbsp; &lt;form:errors cssClass="err(스타일 클래스명)" path="Bean의 변수명"/&gt;	&rArr; 에러메세지<br>&lt;/form:form&gt;</pre>
       <li>컨트롤 &rArr; 커맨드 객체 유효성 검사 </li>
       <ul>
         <li>매개변수: @Valid 커맨드 객체(Bean), 유효성검사 결과를 받는 BindingResult result (순서 중요!)</li>
