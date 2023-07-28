@@ -244,6 +244,8 @@
     </div>
   </div>
 </details>
+
+<details>
   <summary><h2>11) Autowired</h2></summary>
   <div markdown="1">
     <div>
@@ -253,15 +255,22 @@
     <div>
       <ul>
         <li>appContext.xml 생성</li>
-        &rArr; <context:component-scan base-package="패키지명"/>
-        <li></li>
-        <li></li>
-        <li></li>
+        &rArr; &lt;context:component-scan base-package="패키지명"/&gt;
+        <li>생성할 객체가 있는 패키지를 스캔</li>
+        : ApplicationContext context = new ClassPathXmlApplicationContext("appContext.xml");
+        <li>어노테이션에 따라 객체 생성, 주입</li>
+          <ul>
+            <li>@Component("참조변수명"): 객체 생성 (클래스명 참조변수명 = new 클래스명())</li>
+            &rarr; 클래스 위에 작성, 참조변수명은 클래스명과 동일해도 무관
+            <li>@Autowired: 자식을 자동으로 주입 (setter)</li>
+            <li>@Qualifier("참조변수명"): 자식이 2개 이상일 경우 주입하고 싶은 자식의 참조변수 작성</li>
+            &rarr; 변수 위에 작성
+          </ul>
+        <li>@Component("참조변수명")으로 생성한 객체 가져오기</li>
+        : 부모타입 참조변수 = (부모타입)context.getBean("참조변수명");	-> 참조변수명은 @Component와 동일
       </ul>
     </div>
   </div>
-<details>
-  
 </details>
 
 
