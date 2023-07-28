@@ -325,7 +325,7 @@
             <ul>
               <li>방법1: HttpServletRequest request = (HttpServletRequest)map.get("req"); -> 컨트롤러에서 model 속성 설정한 request 객체 </li>
       		     => 배열이 있는 경우 쉼표 처리해 묶어서 String에 넣기
-              <pre><code>
+<pre><code>
 String 배열변수 = "";
 String[] arr = request.getParameterValues("배열변수");
 if(arr.length == 0) {
@@ -337,8 +337,7 @@ if(arr.length == 0) {
    	 배열변수+= ",";
 		}
 	}
-}
-</code></pre>
+}</code></pre>
       		   <li>방법2: Bean bean = (Bean)map.get("bean"); -> 컨트롤러에서 model 속성 설정한 bean 객체</li>
              => bean 객체가 컨트롤러에서 생성되어(매개변수 커맨드 객체) setter로 값 주입 시 배열의 경우 자동 쉼표처리됨
             </ul>
