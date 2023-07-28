@@ -220,7 +220,7 @@
 </details>
 
 <details>
-  <summary><h2> Redirect</h2></summary>
+  <summary><h2>10) Redirect</h2></summary>
   <div markdown="1">
     <div>
       <dt><h2>redirect</h2></dt>
@@ -236,13 +236,32 @@
         <ul>
           <li>map 객체 생성: Map<String,Object> map = new HashMap<String, Object>();</li>
           <li>map에 (키,값) 담기: map.put("mname", name);</li>
-          <li>map 객체 속성설정: redirectAttr.addFlashAttribute("redirectMap",map);</li>
+          <li>map 객체 속성 설정: redirectAttr.addFlashAttribute("redirectMap",map);</li>
         </ul>
         <li>redirect로 넘어간 요청: map 출력해도 null</li>
         <li>jsp 파일: ${requestScope.redirectMap.키}으로 출력하면 결과값 나옴</li>
       </ul>
     </div>
   </div>
+</details>
+  <summary><h2>11) Autowired</h2></summary>
+  <div markdown="1">
+    <div>
+      <dt><h2>@Autowired</h2></dt>
+      <dd>필요한 의존 객체의 타입에 해당하는 빈을 자동으로 주입</dd>
+    </div>
+    <div>
+      <ul>
+        <li>appContext.xml 생성</li>
+        &rArr; <context:component-scan base-package="패키지명"/>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
+<details>
+  
 </details>
 
 
