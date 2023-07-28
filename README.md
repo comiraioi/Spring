@@ -319,31 +319,19 @@
       <dt>뷰 (Command) &rArr; Command 인터페이스 상속받음 </li>
       <dd>미완성 메서드 execute(Model model) 완성하기 &rarr; 컨트롤러에서 받은 model(request 객체 담겨있음)</dd>
       <ul>
-        <li>InsertCommand</li>
+	<li>List Command</li>
+        <li>Insert Command</li>
           <ul>
             <li>Map&lt;String, Object&gt; map = model.asMap(); &rarr; map 형식(키,값)으로 model 가져오기</li>
-            <ul>
-              <li>방법1: HttpServletRequest request = (HttpServletRequest)map.get("req"); -> 컨트롤러에서 model 속성 설정한 request 객체 </li>
-      		     => 배열이 있는 경우 쉼표 처리해 묶어서 String에 넣기
-<pre><code>String 배열변수 = "";
-String[] arr = request.getParameterValues("배열변수");
-if(arr.length == 0) {
-  배열변수 += "선택 X";
-}else {
-	for(int i=0; i<arr.length; i++) {
-	  배열변수 += arr[i];
-		if(i!=arr.length-1) {
-   	 배열변수+= ",";
-		}
-	}
-}</code></pre>
-      		   <li>방법2: Bean bean = (Bean)map.get("bean"); -> 컨트롤러에서 model 속성 설정한 bean 객체</li>
-             => bean 객체가 컨트롤러에서 생성되어(매개변수 커맨드 객체) setter로 값 주입 시 배열의 경우 자동 쉼표처리됨
-            </ul>
+            <li>방법1: HttpServletRequest request = (HttpServletRequest)map.get("req"); -> 컨트롤러에서 model 속성 설정한 request 객체 </li>
+      	    => 배열이 있는 경우 쉼표 처리해 묶어서 String에 넣기
+	    <pre>String 배열변수 = "";<br>String[] arr = request.getParameterValues("배열변수");<br>if(arr.length == 0) {<br> &nbsp; 배열변수 += "선택 X";<br>}else {<br> &nbsp; for(int i=0; i<arr.length; i++) { <br> &nbsp;&nnbsp; 배열변수 += arr[i]; <br> &nbsp;&nbsp; if(i!=arr.length-1) { <br> &nbsp;&nbsp;&nbsp; 배열변수+= ","; <br> &nbsp;&nbsp; } <br> &nbsp; } <br>}</code></pre>
+      	    <li>방법2: Bean bean = (Bean)map.get("bean"); -> 컨트롤러에서 model 속성 설정한 bean 객체</li>
+            => bean 객체가 컨트롤러에서 생성되어(매개변수 커맨드 객체) setter로 값 주입 시 배열의 경우 자동 쉼표처리됨
           </ul>
-        <li></li>
-        <li></li>
-        <li></li>
+        <li>Update Form Command </li>
+        <li>Update Command</li>
+        <li>Delete Command</li>
       </ul>
     </div>
     <div>
