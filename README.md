@@ -212,7 +212,7 @@
                   · 커맨드객체를 매개변수로 설정하기 &rarr; 객체생성, setter, 모델설정까지 자동으로 됨
               <li>form에서 get방식으로 변수에 값을 전달(parameter)</li>
               : form action에 "요청명" 작성 <br>
-                &rarr; 이때, 중복되는 요청명이 있으면 반드시 생략 또는 "<%=request.getContextPath()%>/중복요청명/요청명"과 같이이 작성
+                &rarr; 이때, 중복되는 요청명이 있으면 반드시 생략 또는 "<%=request.getContextPath()%>/중복요청명/요청명"과 같이 작성
             </ul>
           </li>
         </ul>
